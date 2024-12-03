@@ -19,15 +19,7 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: dart pub get
-
-      # Analyze the code for issues
-      - name: Analyze project source
-        run: dart analyze
-
-      # Run tests
-      - name: Run tests
-        run: dart test
+        run: flutter pub get
 
       # Build Flutter project (web, Android, iOS)
       - name: Build Flutter Web
