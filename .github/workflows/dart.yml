@@ -1,0 +1,34 @@
+name: Dart Build and Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - uses: actions/checkout@v4
+
+      # Set up Dart environment
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      # Install dependencies
+      - name: Install dependencies
+        run: dart pub get
+
+      # Analyze the code for issues
+      - name: Analyze project source
+        run: dart analyze
+
+      # Run tests
+      - name: Run tests
+        run: dart test
+
+      # Build Flutter project (web, Android, iOS)
+      - name: Build Flutter Web
+        run: flutter build web --release
